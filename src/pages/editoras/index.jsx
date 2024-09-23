@@ -3,10 +3,10 @@ import { InputGroup, Form, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import SideNavBar from '../../components/side_nav_bar/side_nav_bar';
-import TableAutores from '../../components/autores/table_autores/table_autores';
-import CadastrarAutoresModal from '../../components/autores/modal_cadastrar_autor/modal_cadastrar_autor';
+import TableEditoras from '../../components/editoras/table_editora/table_editora';
+import CadastrarEditoraModal from '../../components/editoras/modal_cadastrar_editora/modal_cadastrar_editora';
 
-const Autores = () => {
+const Editoras = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [show, setShow] = useState(false);
   const [refresh, setRefresh] = useState(0);
@@ -25,7 +25,7 @@ const Autores = () => {
       <SideNavBar />
       <div style={{ marginLeft: '250px', padding: '25px' }}>
         <div className="d-flex justify-content-between px-2">
-          <h1>Autores</h1>
+          <h1>Editoras</h1>
           <div className="col-md-3">
             <InputGroup>
               <Form.Control
@@ -44,11 +44,11 @@ const Autores = () => {
             </InputGroup>
           </div>
         </div>
-        <TableAutores searchTerm={searchTerm} refresh={refresh} />
+        <TableEditoras searchTerm={searchTerm} refresh={refresh} />
       </div>
-      <CadastrarAutoresModal show={show} handleClose={handleClose} onSuccess={handleRefresh} />
+      <CadastrarEditoraModal show={show} handleClose={handleClose} onSuccess={handleRefresh} />
     </>
   );
 };
 
-export default Autores;
+export default Editoras;

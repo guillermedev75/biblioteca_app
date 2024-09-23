@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Button, Toast } from 'react-bootstrap';
 import { deleteGenero } from '../../services/generosServices';
+import { deleteEditora } from '../../services/editorasServices';
+import { deleteAutores } from '../../services/autoresServices';
 
 const DeleteModal = ({ show, handleClose, onSuccess, type, data }) => {
     const [showToast, setShowToast] = useState(false);
@@ -8,6 +10,7 @@ const DeleteModal = ({ show, handleClose, onSuccess, type, data }) => {
     const [toastVariant, setToastVariant] = useState('success');
 
     const handleSubmit = async () => {
+
         if (!data || !data.id) {
             console.error("Dados inválidos:", data);
             return;
@@ -17,7 +20,13 @@ const DeleteModal = ({ show, handleClose, onSuccess, type, data }) => {
             if (type === 'gênero') {
                 await deleteGenero(data.id);
             }
-            setToastMessage(`${type} "${data.genero}" deletado com sucesso.`);
+            if (type === 'editora') {
+                await deleteEditora(data.id);
+            }
+            if (type === 'autor') {
+                await deleteAutores(data.id);
+            }
+            setToastMessage(`${type} deletado com sucesso.`);
             setToastVariant('success');
             setShowToast(true);
             handleClose();
@@ -36,7 +45,7 @@ const DeleteModal = ({ show, handleClose, onSuccess, type, data }) => {
         <>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Deletar {type} "{data ? data.genero : ''}"</Modal.Title>
+                    <Modal.Title>Deletar {type}</Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleClose}>

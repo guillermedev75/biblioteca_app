@@ -2,7 +2,7 @@ import { Routes as RouteReactRoutes, Route } from "react-router-dom";
 import Home from "../pages/home";
 import Generos from "../pages/generos";
 import Autores from "../pages/autores";
-import Editoras from "../pages/editoras/editoras";
+import Editoras from "../pages/editoras";
 import Estoque from "../pages/estoque";
 import Clientes from "../pages/clientes";
 import Emprestimos from "../pages/emprestimos";

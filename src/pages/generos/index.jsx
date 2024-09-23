@@ -44,7 +44,7 @@ const Generos = () => {
             </InputGroup>
           </div>
         </div>
-        <TableGeneros searchTerm={searchTerm} refresh={refresh} /> {/* Passa o refresh para a tabela */}
+        <TableGeneros searchTerm={searchTerm} refresh={refresh} />
       </div>
 
       <CadastrarGeneroModal show={show} handleClose={handleClose} onSuccess={handleRefresh} />
