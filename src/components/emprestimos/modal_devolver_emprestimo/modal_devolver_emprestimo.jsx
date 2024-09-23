@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Toast } from 'react-bootstrap';
-import { createGenero } from '../../../services/generosServices';
+import { Modal, Button, Toast, Form } from 'react-bootstrap';
+import DataInput from '../../input/dataInput';
+import { restoreEmprestimo } from '../../../services/emprestimosServices';
 
-const CadastrarGeneroModal = ({ show, handleClose, onSuccess }) => {
-    const [genero, setGenero] = useState('');
+const ModalDevolucaoEmprestimo = ({ show, handleClose, onSuccess, data }) => {
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
     const [toastVariant, setToastVariant] = useState('success');
+    const [dataDevolucao, setDataDevolucao] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
+
+        const emprestimoData = {
+            id: data.id,
+            data_devolucao: dataDevolucao
+        }
+
         try {
-            await createGenero(genero);
-            setToastMessage('Gênero cadastrado com sucesso!');
+            await restoreEmprestimo(emprestimoData)
+            setToastMessage(`Emprestimo devolvido com sucesso.`);
             setToastVariant('success');
             setShowToast(true);
-            onSuccess();
-            setGenero('');
             handleClose();
+            onSuccess();
+            setTimeout(() => {
+            }, 3300);
         } catch (error) {
-            console.error("Erro ao cadastrar o gênero:", error);
-            setToastMessage(error.response.data.genero[0]);
+            console.error("Erro ao devolver:", error);
+            setToastMessage(`Erro ao devolver.`);
             setToastVariant('danger');
             setShowToast(true);
         }
@@ -30,20 +37,11 @@ const CadastrarGeneroModal = ({ show, handleClose, onSuccess }) => {
         <>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Cadastrar Gênero</Modal.Title>
+                    <Modal.Title>Devolver Emprestimo</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Gênero</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ex.: Ação, Aventura, Magia, etc..."
-                                value={genero}
-                                onChange={(e) => setGenero(e.target.value)}
-                                autoFocus
-                            />
-                        </Form.Group>
+                        <DataInput today label='Data Devolução' onDataChange={setDataDevolucao} />
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -51,7 +49,7 @@ const CadastrarGeneroModal = ({ show, handleClose, onSuccess }) => {
                         Cancelar
                     </Button>
                     <Button variant="success" onClick={handleSubmit}>
-                        Cadastrar
+                        Devolver
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -59,7 +57,7 @@ const CadastrarGeneroModal = ({ show, handleClose, onSuccess }) => {
             <Toast 
                 onClose={() => setShowToast(false)} 
                 show={showToast} 
-                style={{ position: 'absolute', top: '20px', right: '20px', zIndex: '10000000' }} 
+                style={{ position: 'fixed', top: '20px', right: '20px', zIndex: '100' }} 
                 bg={toastVariant}
                 autohide
                 delay={3000}
@@ -74,4 +72,4 @@ const CadastrarGeneroModal = ({ show, handleClose, onSuccess }) => {
     );
 };
 
-export default CadastrarGeneroModal;
+export default ModalDevolucaoEmprestimo;

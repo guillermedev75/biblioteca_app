@@ -67,8 +67,8 @@ const TableEditoras = ({ searchTerm, refresh }) => {
             )
             .map(editoras => (
               <tr key={editoras.id}>
-                <td className='col-md-1'>{editoras.id}</td>
-                <td className='col-md-10'>{editoras.nome}</td>
+                <td className='col-md-0 text-center'>{editoras.id}</td>
+                <td className='col-md-11'>{editoras.nome}</td>
                 <td className='col-md-1'>
                   <Button variant="primary" onClick={() => handleShowEdit(editoras)}>
                     <FontAwesomeIcon icon={faPen} />    

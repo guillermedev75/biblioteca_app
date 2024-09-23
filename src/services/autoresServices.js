@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchAutores = async () => {
   try {
-    // const response = await fetch(`${API_URL}/generos`)
-    const response = await fetch(`http://127.0.0.1:8000/autores`)
+    const response = await fetch(`${API_URL}/autores`)
     if (!response.ok) {
       throw new Error('Erro ao buscar os autores');
     }
@@ -17,7 +16,7 @@ export const fetchAutores = async () => {
 
 export const createAutores = async (data) => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/autores', data);
+    const response = await axios.post(`${API_URL}/autores`, data);
     return response.data;
   } catch (error) {
     throw error;
@@ -26,7 +25,7 @@ export const createAutores = async (data) => {
 
 export const updateAutores = async (data) => {
   try {
-    const response = await axios.put(`http://127.0.0.1:8000/autores/${data.id}`, data);
+    const response = await axios.put(`${API_URL}/autores/${data.id}`, data);
     return response.data;
   } catch (error) {
     throw error;
@@ -35,7 +34,7 @@ export const updateAutores = async (data) => {
 
 export const deleteAutores = async (id) => {
   try {
-    const response = await axios.delete(`http://127.0.0.1:8000/autores/${id}`);
+    const response = await axios.delete(`${API_URL}/autores/${id}`);
     return response.data;
   } catch (error) {
     throw error;

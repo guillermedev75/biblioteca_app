@@ -67,8 +67,8 @@ const TableGeneros = ({ searchTerm, refresh }) => {
             )
             .map(genero => (
               <tr key={genero.id}>
-                <td className='col-md-1'>{genero.id}</td>
-                <td className='col-md-10'>{genero.genero}</td>
+                <td className='col-md-0 text-center'>{genero.id}</td>
+                <td className='col-md-11'>{genero.genero}</td>
                 <td className='col-md-1'>
                   <Button variant="primary" onClick={() => handleShowEdit(genero)}>
                     <FontAwesomeIcon icon={faPen} />    

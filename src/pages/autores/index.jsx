@@ -35,10 +35,10 @@ const Autores = () => {
                 value={searchTerm}
                 onChange={handleInputChange}
               />
-              <Button variant="success" id="addEditoras" onClick={handleShow}>
+              <Button variant="success" id="addAutor" onClick={handleShow}>
                 <div>
                   <FontAwesomeIcon icon={faPlus} className="mr-2" />
-                  <span> Editora</span>
+                  <span> Autor</span>
                 </div>
               </Button>
             </InputGroup>

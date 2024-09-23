@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchEditoras = async () => {
   try {
-    // const response = await fetch(`${API_URL}/generos`)
-    const response = await fetch(`http://127.0.0.1:8000/editoras`)
+    const response = await fetch(`${API_URL}/editoras`)
     if (!response.ok) {
       throw new Error('Erro ao buscar os editoras');
     }
@@ -17,7 +16,7 @@ export const fetchEditoras = async () => {
 
 export const createEditora = async (data) => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/editoras', { nome: data });
+    const response = await axios.post(`${API_URL}/editoras`, { nome: data });
     return response.data;
   } catch (error) {
     throw error;
@@ -26,7 +25,7 @@ export const createEditora = async (data) => {
 
 export const updateEditora = async (data) => {
   try {
-    const response = await axios.put(`http://127.0.0.1:8000/editoras/${data.id}`, { nome: data.nome });
+    const response = await axios.put(`${API_URL}/editoras/${data.id}`, { nome: data.nome });
     return response.data;
   } catch (error) {
     throw error;
@@ -35,7 +34,7 @@ export const updateEditora = async (data) => {
 
 export const deleteEditora = async (id) => {
   try {
-    const response = await axios.delete(`http://127.0.0.1:8000/editoras/${id}`);
+    const response = await axios.delete(`${API_URL}/editoras/${id}`);
     return response.data;
   } catch (error) {
     throw error;

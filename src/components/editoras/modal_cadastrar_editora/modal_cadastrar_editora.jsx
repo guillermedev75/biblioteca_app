@@ -16,8 +16,8 @@ const CadastrarEditoraModal = ({ show, handleClose, onSuccess }) => {
             setToastVariant('success');
             setShowToast(true);
             onSuccess();
-            handleClose();
             setEditora('');
+            handleClose();
         } catch (error) {
             console.error("Erro ao cadastrar o editora:", error);
             setToastMessage(error.response.data.genero[0]);
@@ -28,7 +28,7 @@ const CadastrarEditoraModal = ({ show, handleClose, onSuccess }) => {
 
     return (
         <>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} style={{ zIndex: '100000000000000000' }}>
                 <Modal.Header closeButton>
                     <Modal.Title>Cadastrar Editora</Modal.Title>
                 </Modal.Header>
@@ -59,7 +59,7 @@ const CadastrarEditoraModal = ({ show, handleClose, onSuccess }) => {
             <Toast 
                 onClose={() => setShowToast(false)} 
                 show={showToast} 
-                style={{ position: 'absolute', top: '20px', right: '20px', zIndex: '100' }} 
+                style={{ position: 'absolute', top: '20px', right: '20px', zIndex: '1000000' }} 
                 bg={toastVariant}
                 autohide
                 delay={3000}

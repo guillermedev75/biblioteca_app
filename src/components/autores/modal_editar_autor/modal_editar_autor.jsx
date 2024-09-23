@@ -285,7 +285,7 @@ const EditarAutoresModal = ({ show, handleClose, onSuccess, data }) => {
                     <Button variant="danger" onClick={handleClose}>
                         Cancelar
                     </Button>
-                    <Button variant="success" onClick={handleSubmit}>
+                    <Button variant="primary" onClick={handleSubmit}>
                         Editar
                     </Button>
                 </Modal.Footer>

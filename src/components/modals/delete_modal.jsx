@@ -3,6 +3,10 @@ import { Modal, Button, Toast } from 'react-bootstrap';
 import { deleteGenero } from '../../services/generosServices';
 import { deleteEditora } from '../../services/editorasServices';
 import { deleteAutores } from '../../services/autoresServices';
+import { deleteLivros } from '../../services/livrosServices';
+import { deleteClientes } from '../../services/clientesServices';
+import { deleteEstoque } from '../../services/estoqueServices';
+import { deleteEmprestimos } from '../../services/emprestimosServices';
 
 const DeleteModal = ({ show, handleClose, onSuccess, type, data }) => {
     const [showToast, setShowToast] = useState(false);
@@ -25,6 +29,18 @@ const DeleteModal = ({ show, handleClose, onSuccess, type, data }) => {
             }
             if (type === 'autor') {
                 await deleteAutores(data.id);
+            }
+            if (type === 'livro') {
+                await deleteLivros(data.id);
+            }
+            if (type === 'cliente') {
+                await deleteClientes(data.id);
+            }
+            if (type === 'estoque') {
+                await deleteEstoque(data.id);
+            }
+            if (type === 'emprestimo') {
+                await deleteEmprestimos(data.id);
             }
             setToastMessage(`${type} deletado com sucesso.`);
             setToastVariant('success');

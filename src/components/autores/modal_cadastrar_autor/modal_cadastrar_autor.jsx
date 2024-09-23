@@ -26,12 +26,12 @@ const CadastrarAutoresModal = ({ show, handleClose, onSuccess }) => {
             setToastMessage('Autor cadastrado com sucesso!');
             setToastVariant('success');
             setShowToast(true);
-            onSuccess();
-            handleClose();
             setAutorNome('');
             setAutorAno('');
             setAutorSexo('');
             setAutorPais('');
+            onSuccess();
+            handleClose();
         } catch (error) {
             console.error("Erro ao cadastrar o autor:", error);
             setToastMessage("Erro ao cadastrar autor.");
@@ -42,7 +42,7 @@ const CadastrarAutoresModal = ({ show, handleClose, onSuccess }) => {
 
     return (
         <>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} style={{ zIndex: '10000' }}>
                 <Modal.Header closeButton>
                     <Modal.Title>Cadastrar Autor</Modal.Title>
                 </Modal.Header>
@@ -71,14 +71,15 @@ const CadastrarAutoresModal = ({ show, handleClose, onSuccess }) => {
                             value={autorSexo}
                             onChange={(e) => setAutorSexo(e.target.value)}
                             autoFocus
-                            >
-                                <option selected value="masculino">Masculino</option>
+                            > 
+                                <option value="" disabled selected>Selecione o sexo</option>
+                                <option value="masculino">Masculino</option>
                                 <option value="feminino">Feminino</option>
                             </Form.Select>
                             <Form.Label>Pais de Origem</Form.Label>
                             <Form.Select
                             aria-label="Default select example"
-                            value={autorSexo}
+                            value={autorPais}
                             onChange={(e) => setAutorPais(e.target.value)}
                             autoFocus
                             >
@@ -283,7 +284,7 @@ const CadastrarAutoresModal = ({ show, handleClose, onSuccess }) => {
             <Toast 
                 onClose={() => setShowToast(false)} 
                 show={showToast} 
-                style={{ position: 'absolute', top: '20px', right: '20px', zIndex: '100' }} 
+                style={{ position: 'absolute', top: '20px', right: '20px', zIndex: '1000000' }} 
                 bg={toastVariant}
                 autohide
                 delay={3000}

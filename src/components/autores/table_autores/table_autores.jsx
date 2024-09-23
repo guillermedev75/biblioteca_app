@@ -69,11 +69,11 @@ const TableAutores = ({ searchTerm, refresh }) => {
             )
             .map(autor => (
               <tr key={autor.id}>
-                <td className='col-md-1'>{autor.id}</td>
-                <td className='col-md-4'>{autor.nome}</td>
-                <td className='col-md-2'>{autor.ano_nascimento}</td>
-                <td className='col-md-2'>{autor.sexo}</td>
-                <td className='col-md-2'>{autor.pais_origem}</td>
+                <td className='col-md-0 text-center'>{autor.id}</td>
+                <td className='col-md-8'>{autor.nome}</td>
+                <td className='col-md-1'>{autor.ano_nascimento}</td>
+                <td className='col-md-1'>{autor.sexo}</td>
+                <td className='col-md-1'>{autor.pais_origem}</td>
                 <td className='col-md-1'>
                   <Button variant="primary" onClick={() => handleShowEdit(autor)}>
                     <FontAwesomeIcon icon={faPen} />    
